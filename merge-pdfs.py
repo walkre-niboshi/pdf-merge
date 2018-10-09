@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # import modules
 from PyPDF2 import PdfFileReader, PdfFileMerger
 from pdfrw import PdfReader, PdfWriter, PageMerge
@@ -58,12 +59,12 @@ def combine_4page_versions():
     merger.write("combined_receipts.pdf")
 
 def remove_temp_files():
-    file_list = [x for x in os.listdir() if x.startswith("4pageversion_")]
+    file_list = [x for x in os.listdir('.') if x.startswith("4pageversion_")]
     for fname in file_list:
         os.remove(fname)
 
 def move_individual_files():
-    file_list = [x for x in os.listdir() if not x.startswith("combined")]
+    file_list = [x for x in os.listdir('.') if not x.startswith("combined")]
     os.mkdir("Originals")
     for fname in file_list:
         os.rename(fname, "./Originals/"+fname)
@@ -71,7 +72,8 @@ def move_individual_files():
 # ultimate function
 def execute():
     create_4page_versions()
-    combine_4page_versions()
-    remove_temp_files()
-    move_individual_files()
+    #combine_4page_versions()
+    #remove_temp_files()
+    #move_individual_files()
 
+execute()
